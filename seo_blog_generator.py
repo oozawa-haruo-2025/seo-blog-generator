@@ -454,15 +454,16 @@ def main():
     with st.sidebar:
         st.header("🔑 API設定")
         # SecretsからAPIキーを取得、なければ入力欄を表示
-if "ANTHROPIC_API_KEY" in st.secrets:
-    api_key = st.secrets["ANTHROPIC_API_KEY"]
-    st.success("APIキーが設定されています")
-else:
-    api_key = st.text_input(
-        "Anthropic API Key",
-        type="password",
-        help="Anthropic Claude APIキーを入力してください"
-    )
+        if "ANTHROPIC_API_KEY" in st.secrets:
+            api_key = st.secrets["ANTHROPIC_API_KEY"]
+            st.success("APIキーが設定されています")
+        else:
+            api_key = st.text_input(
+                "Anthropic API Key",
+                type="password",
+                help="Anthropic Claude APIキーを入力してください"
+            )
+        
         
         if api_key:
             st.success("APIキーが設定されました")
